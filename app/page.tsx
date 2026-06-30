@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/site/navbar"
 import { Footer } from "@/components/site/footer"
+import { StructuredData } from "@/components/site/structured-data"
 import { Hero } from "@/components/sections/hero"
 import { Stats } from "@/components/sections/stats"
 import { Features } from "@/components/sections/features"
@@ -13,6 +14,7 @@ import { CTA } from "@/components/sections/cta"
 export default function Page() {
   return (
     <div className="relative flex min-h-svh flex-col">
+      <StructuredData />
       <Navbar />
       <main className="flex-1">
         <Hero />

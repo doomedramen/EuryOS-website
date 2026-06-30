@@ -42,11 +42,35 @@ export const metadata: Metadata = {
     url: "https://euryos.com",
     siteName: "EuryOS",
     type: "website",
+    locale: "en_US",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "EuryOS — Secure by design. Calm by default.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
+    images: ["/og.png"],
+  },
+  alternates: {
+    canonical: "/",
+  },
+  applicationName: "EuryOS",
+  authors: [{ name: "EuryOS" }],
+  creator: "EuryOS",
+  publisher: "EuryOS",
+  category: "technology",
+  formatDetection: { email: false, telephone: false, address: false },
+  appleWebApp: {
+    capable: true,
+    title: "EuryOS",
+    statusBarStyle: "black-translucent",
   },
 }
 
