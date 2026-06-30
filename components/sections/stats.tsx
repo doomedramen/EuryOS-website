@@ -1,10 +1,10 @@
 import { Container } from "@/components/site/primitives"
 
 const stats = [
-  { value: "8", label: "Kernel object types" },
-  { value: "Zero", label: "Ambient authority" },
-  { value: "100%", label: "Rust, memory-safe core" },
-  { value: "MCU→DC", label: "One architecture, every scale" },
+  { value: "Zero", label: "Apps with hidden access" },
+  { value: "Instant", label: "Recovery from crashes" },
+  { value: "Verified", label: "From startup, every time" },
+  { value: "One OS", label: "From tiny devices to workstations" },
 ]
 
 function Stats() {

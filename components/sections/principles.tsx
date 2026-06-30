@@ -7,47 +7,47 @@ const priorities = [
   {
     rank: "01",
     name: "Security",
-    gloss: "No ambient authority; the smallest possible trusted base.",
+    gloss: "Your safety comes first — always, even over speed or convenience.",
   },
   {
     rank: "02",
     name: "Reliability",
-    gloss: "Contain faults. Restart a service — don't reboot the machine.",
+    gloss: "It should just keep working. Contain problems; never lose your work.",
   },
   {
     rank: "03",
     name: "Performance",
-    gloss: "Fast paths where measurement proves they matter.",
+    gloss: "Fast and responsive, everywhere it counts.",
   },
   {
     rank: "04",
     name: "Scalability",
-    gloss: "One design, from microcontroller to datacenter.",
+    gloss: "One operating system, from tiny devices to powerful machines.",
   },
   {
     rank: "05",
     name: "Simplicity",
-    gloss: "Fewer mechanisms, each one earning its place.",
+    gloss: "Fewer moving parts means less that can ever go wrong.",
   },
   {
     rank: "06",
     name: "Compatibility",
-    gloss: "Familiar, deliberately not POSIX. Never the deciding vote.",
+    gloss: "Familiar to use — without dragging along yesterday's baggage.",
   },
 ]
 
 function Principles() {
   return (
     <section
-      id="principles"
+      id="values"
       className="relative border-t border-border/60 py-24 sm:py-28"
     >
       <Container>
         <SectionHeading
           align="center"
-          eyebrow="Design priorities"
-          title="When goals collide, there is a right answer."
-          description="EuryOS ranks its priorities in a strict total order and uses it as a decision procedure. When two pull in different directions, the higher one wins — every time."
+          eyebrow="Our priorities"
+          title="What we won't compromise."
+          description="EuryOS ranks what matters in a strict order and sticks to it. When two goals pull in different directions, the higher one always wins."
           className="mx-auto items-center"
         />
 

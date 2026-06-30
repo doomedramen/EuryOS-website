@@ -17,12 +17,12 @@ const fontDisplay = Outfit({
   variable: "--font-display",
 })
 
-const title = "EuryOS — A capability-secure operating system, rebuilt from first principles"
+const title = "EuryOS — Secure by design. Calm by default."
 const description =
-  "EuryOS is a from-scratch, capability-based microkernel OS written in Rust. Secure by architecture, reliable by containment, and built to be verifiable — from microcontroller to datacenter."
+  "EuryOS is a new kind of operating system that protects everything you do — keeping apps contained, threats out, and your work running smoothly. From the smallest device to the most demanding workstation."
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://euryos.dev"),
+  metadataBase: new URL("https://euryos.com"),
   title: {
     default: title,
     template: "%s — EuryOS",
@@ -31,16 +31,15 @@ export const metadata: Metadata = {
   keywords: [
     "EuryOS",
     "operating system",
-    "microkernel",
-    "capability-based security",
-    "Rust",
-    "seL4 alternative",
-    "secure OS",
+    "secure operating system",
+    "private operating system",
+    "reliable operating system",
+    "secure computing",
   ],
   openGraph: {
     title,
     description,
-    url: "https://euryos.dev",
+    url: "https://euryos.com",
     siteName: "EuryOS",
     type: "website",
   },

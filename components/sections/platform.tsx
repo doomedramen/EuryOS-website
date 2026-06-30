@@ -1,12 +1,11 @@
 import {
-  Cpu,
+  Download,
   FolderTree,
-  KeyRound,
+  Gauge,
   Monitor,
-  Network,
-  Package,
   RadioTower,
-  SquareTerminal,
+  UserRound,
+  Wifi,
 } from "lucide-react"
 
 import { Container, SectionHeading } from "@/components/site/primitives"
@@ -14,54 +13,63 @@ import { Container, SectionHeading } from "@/components/site/primitives"
 const capabilities = [
   {
     icon: Monitor,
-    title: "Composited desktop",
-    body: "A native compositor owns the framebuffer capability. The kernel never touches a pixel.",
-  },
-  {
-    icon: SquareTerminal,
-    title: "Native shell",
-    body: "A terminal that feels like any Unix box — talking to least-privilege services over IPC.",
+    title: "A beautiful desktop",
+    body: "A fast, fluid desktop with windows and apps — exactly the way you'd expect it to work.",
   },
   {
     icon: FolderTree,
-    title: "Content-addressed storage",
-    body: "A navigable file tree backed by a git-style object store. Paths are a capability namespace.",
+    title: "Files & folders",
+    body: "A familiar file system that's quick to browse, reliable, and impossible to silently corrupt.",
   },
   {
-    icon: Network,
-    title: "Networking",
-    body: "A native network stack with a DMA-isolated NIC driver and a socket-like API.",
+    icon: Wifi,
+    title: "Connected & online",
+    body: "Wi-Fi, networking, and the internet — secure and ready to go, right out of the box.",
   },
   {
-    icon: KeyRound,
-    title: "Identity & sessions",
-    body: "Log in as a user — where a “user” is really a per-session capability set, not a uid.",
+    icon: UserRound,
+    title: "Your account, your rules",
+    body: "Sign in as you. Your account is a set of permissions you control — never a master key.",
   },
   {
-    icon: Package,
-    title: "Package manager",
-    body: "Content-addressed packages: deduplicated, atomic installs, instant rollback.",
+    icon: Download,
+    title: "Install with confidence",
+    body: "Get apps in seconds, update safely, and roll back instantly if you change your mind.",
   },
   {
     icon: RadioTower,
-    title: "Remote access",
-    body: "Remote in and administer over the distributed capability fabric — authority travels with you.",
+    title: "Reach it from anywhere",
+    body: "Securely get to your device from afar — your permissions travel with you, and only yours.",
   },
   {
-    icon: Cpu,
-    title: "Multi-core scheduling",
-    body: "SMP from the ground up: per-core run queues, partitioned and lock-free on the hot path.",
+    icon: Gauge,
+    title: "Fast & responsive",
+    body: "Built to make the most of every device, so everything stays smooth under pressure.",
+  },
+  {
+    icon: Sparkles,
+    title: "Nothing new to learn",
+    body: "Everything sits where you expect. The reinvention is under the hood, not in your way.",
   },
 ]
 
+function Sparkles({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M9.5 3.5 11 8l4.5 1.5L11 11l-1.5 4.5L8 11l-4.5-1.5L8 8z" />
+      <path d="M18 4v3M19.5 5.5h-3M18 17v3M19.5 18.5h-3" />
+    </svg>
+  )
+}
+
 function Platform() {
   return (
-    <section id="platform" className="relative border-t border-border/60 py-24 sm:py-28">
+    <section id="experience" className="relative border-t border-border/60 py-24 sm:py-28">
       <Container>
         <SectionHeading
-          eyebrow="The platform"
-          title="Everything you expect from an operating system."
-          description="Familiar on the surface, Eury-native underneath. The shapes you already know — without the legacy assumptions that made them insecure."
+          eyebrow="The experience"
+          title="Everything you expect from your computer."
+          description="Familiar on the surface, reinvented underneath. All the things you do every day — just safer, calmer, and more dependable."
         />
 
         <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-border/70 bg-border/60 sm:grid-cols-2 lg:grid-cols-4">

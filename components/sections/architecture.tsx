@@ -1,11 +1,11 @@
-import { Boxes, MessagesSquare, ShieldCheck } from "lucide-react"
+import { Boxes, RotateCw, ShieldCheck } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Container, SectionHeading } from "@/components/site/primitives"
 
 function Chip({ children }: { children: React.ReactNode }) {
   return (
-    <span className="rounded-md border border-border/70 bg-background px-2 py-0.5 font-mono text-[11px] text-muted-foreground">
+    <span className="rounded-md border border-border/70 bg-background px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
       {children}
     </span>
   )
@@ -35,12 +35,7 @@ function Band({
       )}
     >
       <div className="flex flex-col">
-        <span
-          className={cn(
-            "text-sm font-semibold",
-            highlight && "text-brand"
-          )}
-        >
+        <span className={cn("text-sm font-semibold", highlight && "text-brand")}>
           {label}
         </span>
         {sublabel ? (
@@ -61,39 +56,38 @@ function StackDiagram() {
     <div className="rounded-2xl border border-border/70 bg-card/40 p-3 sm:p-4">
       <div className="space-y-2">
         <Band
-          label="Applications"
-          sublabel="Native programs, per-app manifests"
-          chips={["shell", "files", "package manager"]}
+          label="Your apps"
+          sublabel="Each in its own protected space"
+          chips={["Browser", "Mail", "Photos"]}
         />
         <Band
-          label="System services"
-          sublabel="Userspace · least-privilege"
-          chips={["compositor", "object store", "net stack", "identity"]}
+          label="System features"
+          sublabel="Files, network, display, accounts"
+          chips={["Files", "Network", "Display"]}
         />
         <Band
-          label="Drivers"
-          sublabel="Userspace · DMA IOMMU-isolated"
-          chips={["gpu", "nic", "block"]}
+          label="Device drivers"
+          sublabel="Restartable, kept at arm's length"
+          chips={["Graphics", "Wi-Fi", "Storage"]}
         />
 
-        {/* The trust boundary */}
         <div className="relative flex items-center justify-center py-2">
           <div className="absolute inset-x-2 border-t border-dashed border-brand/40" />
-          <span className="relative rounded-full border border-brand/30 bg-background px-3 py-1 font-mono text-[11px] text-brand">
-            capability-checked IPC · syscall ABI
+          <span className="relative rounded-full border border-brand/30 bg-background px-3 py-1 text-[11px] font-medium text-brand">
+            every request checked · nothing trusted by default
           </span>
         </div>
 
         <Band
           highlight
-          label="EuryOS microkernel"
-          sublabel="The entire trusted computing base"
-          chips={["8 objects", "IPC", "scheduler", "memory", "W^X"]}
+          label="EuryOS core"
+          sublabel="Small, trusted, and verified"
+          chips={["always running"]}
         />
         <Band
-          label="Hardware"
-          sublabel="One design, every target"
-          chips={["AArch64", "x86-64", "RISC-V (next)"]}
+          label="Your device"
+          sublabel="Phone · laptop · workstation · server"
+          chips={["any hardware"]}
         />
       </div>
     </div>
@@ -103,32 +97,32 @@ function StackDiagram() {
 const supports = [
   {
     icon: ShieldCheck,
-    title: "A trusted base small enough to trust",
-    body: "Only the microkernel is privileged. Eight object types, a small isolated unsafe core — orders of magnitude less code than a monolithic kernel.",
+    title: "A tiny core you can trust",
+    body: "Only a small, compact core has full control — small enough to be checked and proven correct, unlike a sprawling traditional system.",
   },
   {
-    icon: MessagesSquare,
-    title: "IPC is the crown jewel",
-    body: "Synchronous call/reply carries control and authority; a blessed async completion plane carries throughput. No raw shared-memory free-for-all.",
+    icon: RotateCw,
+    title: "Self-healing by default",
+    body: "Drivers and features run on their own. If one fails, EuryOS restarts it in place — your apps and your work simply keep going.",
   },
   {
     icon: Boxes,
-    title: "Everything else is just a program",
-    body: "Drivers, filesystem, network, compositor — all userspace. Each can crash and restart without taking the system, or its neighbors, down.",
+    title: "Everything else is just an app",
+    body: "Even core features live in their own protected space, so a single failure can never bring down the whole system.",
   },
 ]
 
 function Architecture() {
   return (
     <section
-      id="architecture"
+      id="reliability"
       className="relative border-t border-border/60 py-24 sm:py-28"
     >
       <Container>
         <SectionHeading
-          eyebrow="Architecture"
-          title="A microkernel that does almost nothing — on purpose."
-          description="The kernel manages eight object types and the transitions between them. Drivers, the filesystem, the network stack, the compositor — everything else runs in userspace, isolated and restartable, reachable only through capability-checked IPC."
+          eyebrow="Reliability"
+          title="Built so problems can't spread."
+          description="EuryOS keeps every part of the system in its own protected space. So when one piece stumbles, it's caught and restarted — without dragging everything else down with it."
         />
 
         <div className="mt-14 grid gap-10 lg:grid-cols-5 lg:gap-12">

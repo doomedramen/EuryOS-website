@@ -1,17 +1,17 @@
 export const siteConfig = {
   name: "EuryOS",
   version: "1.0",
-  tagline: "A capability-secure operating system, rebuilt from first principles.",
+  tagline: "Secure by design. Calm by default.",
   description:
-    "A from-scratch, capability-based microkernel OS written in Rust. Secure by architecture, reliable by containment, and built to be verifiable.",
-  github: "https://github.com/doomedramen/EuryOS",
-  docs: "https://github.com/doomedramen/EuryOS/blob/main/DESIGN.md",
-  roadmap: "https://github.com/doomedramen/EuryOS/blob/main/ROADMAP.md",
+    "EuryOS is a new kind of operating system that protects everything you do — keeping apps contained, threats out, and your work running smoothly.",
+  url: "https://euryos.com",
+  email: "hello@euryos.com",
+  contact: "mailto:hello@euryos.com",
 } as const
 
 export const navLinks = [
+  { label: "Why EuryOS", href: "#why" },
   { label: "Security", href: "#security" },
-  { label: "Architecture", href: "#architecture" },
-  { label: "Platform", href: "#platform" },
-  { label: "Principles", href: "#principles" },
+  { label: "Reliability", href: "#reliability" },
+  { label: "Experience", href: "#experience" },
 ] as const

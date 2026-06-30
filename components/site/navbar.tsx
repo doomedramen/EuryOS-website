@@ -15,7 +15,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { EuryWordmark } from "@/components/site/logo"
-import { GitHubIcon } from "@/components/site/icons"
 import { ThemeToggle } from "@/components/site/theme-toggle"
 
 function useScrolled(threshold = 8) {
@@ -66,25 +65,8 @@ function Navbar() {
 
           <div className="flex items-center gap-1">
             <ThemeToggle className="hidden sm:inline-flex" />
-            <Button
-              asChild
-              variant="ghost"
-              size="icon"
-              className="hidden sm:inline-flex"
-            >
-              <a
-                href={siteConfig.github}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="EuryOS on GitHub"
-              >
-                <GitHubIcon className="size-4" />
-              </a>
-            </Button>
             <Button asChild size="sm" className="hidden h-8 px-3.5 sm:inline-flex">
-              <a href={siteConfig.github} target="_blank" rel="noreferrer">
-                Get started
-              </a>
+              <a href={siteConfig.contact}>Contact us</a>
             </Button>
 
             <Sheet open={open} onOpenChange={setOpen}>
@@ -121,16 +103,8 @@ function Navbar() {
                     <span className="text-sm text-muted-foreground">Theme</span>
                     <ThemeToggle />
                   </div>
-                  <Button asChild variant="outline" className="w-full">
-                    <a href={siteConfig.github} target="_blank" rel="noreferrer">
-                      <GitHubIcon className="size-4" />
-                      Star on GitHub
-                    </a>
-                  </Button>
                   <Button asChild className="w-full">
-                    <a href={siteConfig.github} target="_blank" rel="noreferrer">
-                      Get started
-                    </a>
+                    <a href={siteConfig.contact}>Contact us</a>
                   </Button>
                 </div>
               </SheetContent>
