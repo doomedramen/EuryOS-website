@@ -20,37 +20,18 @@ export const alt = "EuryOS — Secure by design. Calm by default."
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
-const fontDir = join(process.cwd(), "assets", "fonts")
-const outfit600 = readFileSync(join(fontDir, "Outfit-600.woff"))
-const outfit400 = readFileSync(join(fontDir, "Outfit-400.woff"))
+const assetDir = join(process.cwd(), "assets")
+const outfit600 = readFileSync(join(assetDir, "fonts", "Outfit-600.woff"))
+const outfit400 = readFileSync(join(assetDir, "fonts", "Outfit-400.woff"))
+
+// The real EuryOS mark, pre-rasterized from app/icon.svg (rounded brand badge).
+const markUri = `data:image/png;base64,${readFileSync(
+  join(assetDir, "og-mark.png")
+).toString("base64")}`
 
 function Mark() {
-  const bar = (width: number) => ({
-    width,
-    height: 16,
-    borderRadius: 8,
-    backgroundColor: "#ffffff",
-  })
-  return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        justifyContent: "center",
-        gap: 12,
-        width: 104,
-        height: 104,
-        padding: 26,
-        borderRadius: 30,
-        backgroundColor: "#655fee",
-      }}
-    >
-      <div style={bar(52)} />
-      <div style={bar(36)} />
-      <div style={bar(52)} />
-    </div>
-  )
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src={markUri} width={104} height={104} alt="" />
 }
 
 export default function OpengraphImage() {

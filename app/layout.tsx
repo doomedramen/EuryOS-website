@@ -3,6 +3,7 @@ import { Geist_Mono, Inter, Outfit } from "next/font/google"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { StructuredData } from "@/components/site/structured-data"
 import { cn } from "@/lib/utils";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'})
@@ -10,11 +11,13 @@ const inter = Inter({subsets:['latin'],variable:'--font-sans'})
 const fontMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
+  preload: false,
 })
 
 const fontDisplay = Outfit({
   subsets: ["latin"],
   variable: "--font-display",
+  preload: false,
 })
 
 const title = "EuryOS — Secure by design. Calm by default."
@@ -99,6 +102,7 @@ export default function RootLayout({
       )}
     >
       <body>
+        <StructuredData />
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

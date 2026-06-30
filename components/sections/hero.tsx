@@ -95,7 +95,7 @@ function ProtectionPanel() {
               className={
                 "shrink-0 rounded-full border px-2.5 py-0.5 text-xs font-medium " +
                 (e.tone === "good"
-                  ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-500"
+                  ? "border-success/30 bg-success/10 text-success"
                   : "border-brand/30 bg-brand/10 text-brand")
               }
             >
@@ -113,30 +113,22 @@ function Hero() {
     <section id="top" className="relative overflow-hidden pb-20 pt-32 sm:pt-40">
       <HeroBackground />
       <Container className="relative flex flex-col items-center text-center">
-        <div className="animate-fade-up">
-          <Pill />
-        </div>
+        <Pill />
 
-        <h1 className="animate-fade-up mt-7 max-w-4xl text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
+        <h1 className="mt-7 max-w-4xl text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
           <span className="text-gradient">Secure by design.</span>
           <br className="hidden sm:block" />{" "}
           <span className="text-brand-gradient">Calm by default.</span>
         </h1>
 
-        <p
-          className="animate-fade-up mt-6 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg"
-          style={{ animationDelay: "60ms" }}
-        >
+        <p className="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
           EuryOS is a new kind of operating system that protects everything you
           do — keeping apps in their lane, threats locked out, and your work
           running smoothly. No malware free-for-all. No mystery crashes. No
           compromises.
         </p>
 
-        <div
-          className="animate-fade-up mt-9 flex flex-col items-center gap-3 sm:flex-row"
-          style={{ animationDelay: "120ms" }}
-        >
+        <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row">
           <Button asChild size="lg" className="h-11 px-5 text-[0.95rem]">
             <a href={siteConfig.contact}>
               Get in touch
@@ -153,19 +145,13 @@ function Hero() {
           </Button>
         </div>
 
-        <p
-          className="animate-fade-up mt-6 text-xs text-muted-foreground"
-          style={{ animationDelay: "150ms" }}
-        >
+        <p className="mt-6 text-xs text-muted-foreground">
           Launching 2026 · One operating system, from the smallest device to your
           workstation
         </p>
       </Container>
 
-      <Container
-        className="animate-fade-up relative mt-16 max-w-3xl"
-        style={{ animationDelay: "240ms" }}
-      >
+      <Container className="relative mt-16 max-w-3xl">
         <div className="pointer-events-none absolute -inset-6 -z-10 rounded-3xl bg-brand/10 blur-3xl" />
         <ProtectionPanel />
       </Container>

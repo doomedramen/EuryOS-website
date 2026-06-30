@@ -93,7 +93,7 @@ function Features() {
                 {["Files", "Camera", "Internet"].map((c) => (
                   <span
                     key={c}
-                    className="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2 py-1 text-emerald-500"
+                    className="rounded-md border border-success/30 bg-success/10 px-2 py-1 text-success"
                   >
                     {c} ✓
                   </span>
@@ -127,14 +127,14 @@ function Features() {
                   driver crashed
                 </span>
                 <span>→</span>
-                <span className="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2 py-1 text-emerald-500">
+                <span className="rounded-md border border-success/30 bg-success/10 px-2 py-1 text-success">
                   restarted
                 </span>
               </div>
               <div className="mt-3 text-muted-foreground">
                 your work{" "}
-                <span className="text-emerald-500">untouched</span> · system{" "}
-                <span className="text-emerald-500">still running</span>
+                <span className="text-success">untouched</span> · system{" "}
+                <span className="text-success">still running</span>
               </div>
             </MiniPanel>
           </FeatureCard>

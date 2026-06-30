@@ -73,7 +73,7 @@ function PermissionCard() {
           {reach.map((r) => (
             <li key={r.label} className="flex items-center gap-2.5 text-sm">
               {r.allowed ? (
-                <span className="inline-flex size-5 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-500">
+                <span className="inline-flex size-5 items-center justify-center rounded-full bg-success/15 text-success">
                   <svg viewBox="0 0 24 24" className="size-3" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
                 </span>
               ) : (
