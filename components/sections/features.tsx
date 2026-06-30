@@ -143,12 +143,12 @@ function Features() {
           <FeatureCard className="col-span-6 sm:col-span-3 lg:col-span-2">
             <FeatureIcon icon={CheckCheck} />
             <h3 className="mt-5 text-lg font-semibold tracking-tight">
-              Trust you don&apos;t take on faith
+              Proven, not just promised
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              The secure heart of EuryOS is small enough to be checked line by
-              line and proven correct — something no traditional operating system
-              can claim.
+              The core that keeps you safe is small enough to be checked, line by
+              line, and proven correct — so EuryOS&apos;s security is something
+              experts can verify, not just a promise you have to take on trust.
             </p>
           </FeatureCard>
 

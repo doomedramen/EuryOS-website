@@ -16,13 +16,13 @@ export default function Page() {
       <Navbar />
       <main className="flex-1">
         <Hero />
+        <Philosophy />
         <Stats />
         <Features />
         <Security />
         <Architecture />
         <Platform />
         <Principles />
-        <Philosophy />
         <CTA />
       </main>
       <Footer />

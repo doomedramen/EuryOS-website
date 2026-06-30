@@ -47,7 +47,7 @@ function Principles() {
           align="center"
           eyebrow="Our priorities"
           title="What we won't compromise."
-          description="EuryOS ranks what matters in a strict order and sticks to it. When two goals pull in different directions, the higher one always wins."
+          description="These are the priorities behind every decision we make, listed in the order that matters most — and your security always comes first, never traded away for speed or convenience."
           className="mx-auto items-center"
         />
 
