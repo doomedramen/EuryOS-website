@@ -61,7 +61,7 @@ function Footer() {
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
           <p className="text-xs text-muted-foreground">
-            Secure by design. Calm by default.
+            Secure by design. Familiar by default.
           </p>
         </div>
       </Container>

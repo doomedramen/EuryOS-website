@@ -20,7 +20,7 @@ const fontDisplay = Outfit({
   preload: false,
 })
 
-const title = "EuryOS — Secure by design. Calm by default."
+const title = "EuryOS — Secure by design. Familiar by default."
 const description =
   "EuryOS is a new kind of operating system that protects everything you do — keeping apps contained, threats out, and your work running smoothly. From the smallest device to the most demanding workstation."
 
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "EuryOS — Secure by design. Calm by default.",
+        alt: "EuryOS — Secure by design. Familiar by default.",
       },
     ],
   },

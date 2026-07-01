@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "EuryOS",
   version: "1.0",
-  tagline: "Secure by design. Calm by default.",
+  tagline: "Secure by design. Familiar by default.",
   description:
     "EuryOS is a new kind of operating system that protects everything you do — keeping apps contained, threats out, and your work running smoothly.",
   url: "https://euryos.com",

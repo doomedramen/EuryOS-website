@@ -16,7 +16,7 @@ import { join } from "node:path"
 import { ImageResponse } from "next/og"
 
 export const dynamic = "force-static"
-export const alt = "EuryOS — Secure by design. Calm by default."
+export const alt = "EuryOS — Secure by design. Familiar by default."
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -92,7 +92,7 @@ export default function OpengraphImage() {
               color: "transparent",
             }}
           >
-            Calm by default.
+            Familiar by default.
           </div>
           <div
             style={{

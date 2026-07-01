@@ -118,7 +118,7 @@ function Hero() {
         <h1 className="mt-7 max-w-4xl text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
           <span className="text-gradient">Secure by design.</span>
           <br className="hidden sm:block" />{" "}
-          <span className="text-brand-gradient">Calm by default.</span>
+          <span className="text-brand-gradient">Familiar by default.</span>
         </h1>
 
         <p className="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">

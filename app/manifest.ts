@@ -6,7 +6,7 @@ export const dynamic = "force-static"
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "EuryOS — Secure by design. Calm by default.",
+    name: "EuryOS — Secure by design. Familiar by default.",
     short_name: "EuryOS",
     description: siteConfig.description,
     start_url: "/",
