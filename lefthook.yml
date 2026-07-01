@@ -1,0 +1,13 @@
+# Git hooks, managed by lefthook (installed via the package.json "prepare" script).
+#
+# The social share card at public/og.png is a static PNG — GitHub Pages needs the
+# extension — so it can silently drift from its source in scripts/generate-og.tsx.
+# When that source or its assets/ inputs are staged, regenerate the image and
+# stage the result so the shipped card can never fall out of sync with the copy.
+pre-commit:
+  commands:
+    regenerate-og:
+      glob:
+        - "scripts/generate-og.tsx"
+        - "assets/**/*"
+      run: pnpm og && git add public/og.png
