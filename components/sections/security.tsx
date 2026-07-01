@@ -59,7 +59,7 @@ function ReachMark({ allowed }: { allowed: boolean }) {
       className={
         "inline-flex size-5 items-center justify-center rounded-full " +
         (allowed
-          ? "bg-success/15 text-success"
+          ? "bg-success/10 text-success"
           : "bg-muted text-muted-foreground")
       }
     >
@@ -84,7 +84,7 @@ function PermissionCard() {
   return (
     <WindowFrame title="Permission" bodyClassName="bg-card/60">
       <div className="flex items-start gap-3">
-        <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand/15 text-brand">
+        <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-lg border border-border bg-muted text-foreground">
           <Sparkle />
         </span>
         <div className="min-w-0">
@@ -99,14 +99,14 @@ function PermissionCard() {
         <button
           type="button"
           tabIndex={-1}
-          className="flex-1 cursor-default rounded-lg border border-border bg-background py-2 text-sm font-medium"
+          className="flex-1 cursor-default rounded-md border border-border bg-background py-2 text-sm font-medium"
         >
           Don&apos;t allow
         </button>
         <button
           type="button"
           tabIndex={-1}
-          className="flex-1 cursor-default rounded-lg bg-brand py-2 text-sm font-medium text-brand-foreground"
+          className="flex-1 cursor-default rounded-md bg-primary py-2 text-sm font-medium text-primary-foreground"
         >
           Choose a file
         </button>
@@ -181,7 +181,6 @@ function Security() {
           </div>
 
           <Reveal className="relative">
-            <div className="animate-breathe pointer-events-none absolute -inset-6 -z-10 rounded-3xl bg-brand/10 blur-3xl" />
             <PermissionCard />
           </Reveal>
         </div>

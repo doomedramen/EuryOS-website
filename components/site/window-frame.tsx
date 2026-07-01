@@ -18,7 +18,7 @@ function WindowFrame({
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-xl border border-border/80 bg-card/80 shadow-2xl shadow-black/20 backdrop-blur-sm",
+        "overflow-hidden rounded-lg border border-border/80 bg-card shadow-sm",
         className
       )}
     >

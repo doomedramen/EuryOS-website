@@ -20,10 +20,9 @@ function FeatureCard({
   children: React.ReactNode
 }) {
   return (
-    // The cursor-follow spotlight replaces the old static top-left glow.
     <MagicCard
       className={cn(
-        "h-full rounded-2xl border border-border/70 bg-card/50 p-6 transition-colors hover:border-border sm:p-7",
+        "h-full rounded-lg border border-border/70 bg-card p-6 shadow-sm transition-colors hover:border-foreground/20 hover:bg-muted/30 sm:p-7",
         className
       )}
     >
@@ -34,7 +33,7 @@ function FeatureCard({
 
 function FeatureIcon({ icon: Icon }: { icon: React.ElementType }) {
   return (
-    <div className="inline-flex size-10 items-center justify-center rounded-xl border border-border/80 bg-background text-brand shadow-sm">
+    <div className="inline-flex size-10 items-center justify-center rounded-lg border border-border/80 bg-background text-foreground shadow-sm">
       <Icon className="size-5" />
     </div>
   )
@@ -50,7 +49,7 @@ function MiniPanel({
   return (
     <div
       className={cn(
-        "mt-6 rounded-xl border border-border/70 bg-background/60 p-4 text-xs",
+        "mt-6 rounded-lg border border-border/70 bg-background p-4 text-xs",
         className
       )}
     >
@@ -90,7 +89,7 @@ function Features() {
                 {["Files", "Camera", "Internet"].map((c) => (
                   <span
                     key={c}
-                    className="rounded-md border border-success/30 bg-success/10 px-2 py-1 text-success"
+                    className="rounded-md border border-success/20 bg-success/5 px-2 py-1 text-success"
                   >
                     {c} ✓
                   </span>

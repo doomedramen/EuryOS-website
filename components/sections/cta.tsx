@@ -5,26 +5,13 @@ import { Button } from "@/components/ui/button"
 import { Container } from "@/components/site/primitives"
 import { Reveal } from "@/components/site/reveal"
 import { MarkGlyph } from "@/components/site/logo"
-import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern"
 
 function CTA() {
   return (
-    <section id="contact" className="relative py-24 sm:py-28">
+    <section id="contact" className="relative border-t border-border/60 bg-neutral-950 py-24 text-white sm:py-28">
       <Container>
-        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-neutral-950 px-6 py-16 text-center sm:px-16 sm:py-20">
-          <AnimatedGridPattern
-            width={44}
-            height={44}
-            numSquares={28}
-            maxOpacity={0.12}
-            duration={5}
-            className="text-white/[0.09] [mask-image:radial-gradient(420px_circle_at_center,white,transparent)]"
-          />
-          <div
-            aria-hidden="true"
-            className="animate-drift-slow pointer-events-none absolute -top-24 left-1/2 size-[32rem] -translate-x-1/2 rounded-full bg-brand/30 blur-[120px]"
-          />
-          <MarkGlyph className="pointer-events-none absolute -bottom-10 -right-6 size-48 text-white/[0.04]" />
+        <div className="relative overflow-hidden border-x border-white/10 px-6 py-16 text-center sm:px-16 sm:py-20">
+          <MarkGlyph className="pointer-events-none absolute -bottom-10 -right-6 size-48 text-white/[0.035]" />
 
           <Reveal className="relative mx-auto flex max-w-2xl flex-col items-center">
             <h2 className="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">

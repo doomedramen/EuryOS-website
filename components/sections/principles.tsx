@@ -41,7 +41,7 @@ function Principles() {
   return (
     <section
       id="values"
-      className="relative border-t border-border/60 py-24 sm:py-28"
+      className="relative border-t border-border/60 bg-muted/20 py-24 sm:py-28"
     >
       <Container>
         <Reveal>
@@ -61,22 +61,22 @@ function Principles() {
               <span
                 className={cn(
                   "text-xl font-semibold tracking-tight sm:text-2xl",
-                  i === 0 ? "text-brand-gradient" : "text-foreground"
+                  i === 0 ? "text-foreground" : "text-muted-foreground"
                 )}
               >
                 {p.name}
               </span>
               {i < priorities.length - 1 ? (
-                <ChevronRight className="size-4 text-brand/50" />
+                <ChevronRight className="size-4 text-muted-foreground" />
               ) : null}
             </StaggerItem>
           ))}
         </Stagger>
 
         {/* Per-priority glosses */}
-        <Stagger className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-border/70 bg-border/60 sm:grid-cols-2 lg:grid-cols-3">
+        <Stagger className="mt-14 grid gap-px overflow-hidden rounded-lg border border-border/70 bg-border/60 shadow-sm sm:grid-cols-2 lg:grid-cols-3">
           {priorities.map((p) => (
-            <StaggerItem key={p.rank} className="bg-card/60 p-6">
+            <StaggerItem key={p.rank} className="bg-card p-6">
               <div className="flex items-baseline gap-3">
                 <span className="font-mono text-xs text-brand">{p.rank}</span>
                 <h3 className="text-base font-semibold">{p.name}</h3>

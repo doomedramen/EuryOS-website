@@ -75,13 +75,13 @@ function Platform() {
           />
         </Reveal>
 
-        <Stagger className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-border/70 bg-border/60 sm:grid-cols-2 lg:grid-cols-4">
+        <Stagger className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-border/70 bg-border/60 shadow-sm sm:grid-cols-2 lg:grid-cols-4">
           {capabilities.map((c) => (
             <StaggerItem
               key={c.title}
-              className="group flex flex-col gap-3 bg-card/60 p-6 transition-colors hover:bg-card"
+              className="group flex flex-col gap-3 bg-card p-6 transition-colors hover:bg-muted/30"
             >
-              <div className="inline-flex size-9 items-center justify-center rounded-lg border border-border/80 bg-background text-brand transition-colors group-hover:border-brand/40">
+              <div className="inline-flex size-9 items-center justify-center rounded-lg border border-border/80 bg-background text-foreground transition-colors group-hover:border-foreground/20">
                 <c.icon className="size-4.5" />
               </div>
               <h3 className="text-sm font-semibold">{c.title}</h3>

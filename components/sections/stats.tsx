@@ -10,9 +10,9 @@ const stats = [
 
 function Stats() {
   return (
-    <section className="relative">
+    <section className="relative border-y border-border/60 bg-muted/20 py-16 sm:py-20">
       <Container>
-        <Stagger className="grid grid-cols-2 gap-y-8 rounded-2xl border border-border/70 bg-card/40 py-8 sm:grid-cols-4">
+        <Stagger className="grid grid-cols-2 gap-y-8 rounded-lg border border-border/70 bg-card py-8 shadow-sm sm:grid-cols-4">
           {stats.map((stat, i) => (
             <StaggerItem
               key={stat.label}

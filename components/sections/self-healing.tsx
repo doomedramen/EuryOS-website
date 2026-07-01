@@ -53,7 +53,7 @@ function SelfHealing() {
         <motion.span variants={reduce ? undefined : arrow}>→</motion.span>
         <motion.span
           variants={reduce ? undefined : restarted}
-          className="rounded-md border border-success/30 bg-success/10 px-2 py-1 text-success"
+          className="rounded-md border border-success/20 bg-success/5 px-2 py-1 text-success"
         >
           restarted
         </motion.span>

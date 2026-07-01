@@ -15,9 +15,15 @@ function HeroBackground() {
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
     >
-      <div className="absolute inset-0 bg-grid mask-fade-b opacity-60" />
-      <div className="animate-drift-slow absolute -top-40 left-1/2 h-[36rem] w-[64rem] -translate-x-1/2 rounded-full bg-brand/20 blur-[140px] dark:bg-brand/25" />
-      <div className="animate-drift-slow absolute -top-20 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-brand/30 blur-[120px] [animation-duration:24s]" />
+      <div className="absolute inset-0 bg-grid mask-fade-b opacity-40" />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 58% 42% at 50% 38%, var(--background) 0%, color-mix(in oklch, var(--background) 88%, transparent) 44%, transparent 76%)",
+        }}
+      />
+      <div className="absolute inset-x-0 top-0 h-px bg-border" />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background" />
     </div>
   )
@@ -27,12 +33,12 @@ function Pill() {
   return (
     <a
       href="#why"
-      className="group inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/60 py-1 pl-1.5 pr-3 text-sm shadow-sm backdrop-blur-sm transition-colors hover:bg-card"
+      className="group inline-flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-1.5 text-sm shadow-sm transition-colors hover:bg-muted"
     >
-      <span className="inline-flex items-center rounded-full bg-brand/10 px-2 py-0.5 font-mono text-xs font-medium text-brand">
+      <span className="inline-flex items-center rounded-md border border-border bg-muted px-2 py-0.5 font-mono text-xs font-medium text-foreground">
         v{siteConfig.version}
       </span>
-      <span className="text-muted-foreground">Meet EuryOS — see what makes it different</span>
+      <span className="text-muted-foreground">Meet EuryOS - see what makes it different</span>
       <ArrowRight className="size-3.5 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
     </a>
   )
@@ -99,14 +105,14 @@ function ProtectionPanel() {
           const badgeClass =
             "shrink-0 rounded-full border px-2.5 py-0.5 text-xs font-medium " +
             (e.tone === "good"
-              ? "border-success/30 bg-success/10 text-success"
-              : "border-brand/30 bg-brand/10 text-brand")
+              ? "border-success/20 bg-success/5 text-success"
+              : "border-border bg-muted text-foreground")
           return (
             <StaggerItem
               key={e.title}
-              className="flex items-center gap-3 rounded-xl border border-border/60 bg-background/50 p-3"
+              className="flex items-center gap-3 rounded-lg border border-border/70 bg-background p-3"
             >
-              <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-border/70 bg-background text-brand">
+              <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-md border border-border/70 bg-muted text-foreground">
                 <e.icon className="size-4.5" />
               </span>
               <div className="min-w-0 flex-1">
@@ -147,7 +153,7 @@ function Hero() {
             <h1 className="mt-7 max-w-4xl text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
               <span className="text-gradient">Secure by design.</span>
               <br className="hidden sm:block" />{" "}
-              <span className="text-brand-gradient">Familiar by default.</span>
+              <span className="text-gradient">Familiar by default.</span>
             </h1>
           </StaggerItem>
 
@@ -187,8 +193,7 @@ function Hero() {
       </Container>
 
       <Reveal delay={0.3} className="relative">
-        <Container className="relative mt-16 max-w-3xl">
-          <div className="animate-breathe pointer-events-none absolute -inset-6 -z-10 rounded-3xl bg-brand/10 blur-3xl" />
+        <Container className="relative mt-10 max-w-3xl sm:mt-12">
           <ProtectionPanel />
         </Container>
       </Reveal>

@@ -77,10 +77,10 @@
     --chart-4: oklch(0.371 0 0);
     --chart-5: oklch(0.269 0 0);
     --radius: 0.625rem;
-    --brand: oklch(0.561 0.214 278);
+    --brand: oklch(0.205 0 0);
     --brand-foreground: oklch(0.985 0 0);
-    --brand-muted: oklch(0.561 0.214 278 / 0.08);
-    --success: oklch(0.52 0.13 163);
+    --brand-muted: oklch(0.205 0 0 / 0.06);
+    --success: oklch(0.45 0.055 163);
     --sidebar: oklch(0.985 0 0);
     --sidebar-foreground: oklch(0.145 0 0);
     --sidebar-primary: oklch(0.205 0 0);
@@ -110,10 +110,10 @@
     --border: oklch(1 0 0 / 10%);
     --input: oklch(1 0 0 / 15%);
     --ring: oklch(0.556 0 0);
-    --brand: oklch(0.66 0.2 278);
+    --brand: oklch(0.922 0 0);
     --brand-foreground: oklch(0.145 0 0);
-    --brand-muted: oklch(0.66 0.2 278 / 0.14);
-    --success: oklch(0.74 0.16 163);
+    --brand-muted: oklch(1 0 0 / 0.08);
+    --success: oklch(0.78 0.075 163);
     --chart-1: oklch(0.87 0 0);
     --chart-2: oklch(0.556 0 0);
     --chart-3: oklch(0.439 0 0);
@@ -121,7 +121,7 @@
     --chart-5: oklch(0.269 0 0);
     --sidebar: oklch(0.205 0 0);
     --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary: oklch(0.922 0 0);
     --sidebar-primary-foreground: oklch(0.985 0 0);
     --sidebar-accent: oklch(0.269 0 0);
     --sidebar-accent-foreground: oklch(0.985 0 0);
@@ -146,7 +146,7 @@
     scroll-behavior: smooth;
     }
   ::selection {
-    background-color: color-mix(in oklch, var(--brand) 30%, transparent);
+    background-color: color-mix(in oklch, var(--foreground) 14%, transparent);
     }
 }
 
@@ -180,17 +180,6 @@
     background-clip: text;
     color: transparent;
   }
-  .text-brand-gradient {
-    background-image: linear-gradient(
-      110deg,
-      var(--brand) 0%,
-      color-mix(in oklch, var(--brand) 55%, var(--foreground)) 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
   /* Hairline divider that fades at both ends. */
   .divider-x {
     height: 1px;
@@ -217,20 +206,6 @@
     mask-image: linear-gradient(to top, #000 55%, transparent);
   }
 
-  /* Ambient motion for decorative glows — transform/opacity only, so it stays
-     on the compositor. Keyframes preserve any translate used for centering. */
-  .animate-drift-slow {
-    animation: eos-drift 18s ease-in-out infinite;
-    will-change: transform;
-  }
-  .animate-pulse-glow {
-    animation: eos-pulse-glow 12s ease-in-out infinite;
-    will-change: transform, opacity;
-  }
-  .animate-breathe {
-    animation: eos-breathe 12s ease-in-out infinite;
-    will-change: transform, opacity;
-  }
   /* A light that sweeps along the architecture "checkpoint" line. */
   .animate-checkpoint {
     animation: eos-checkpoint 4.5s ease-in-out infinite;
@@ -243,19 +218,6 @@
   }
 }
 
-/* translateX(-50%) is kept so this composes with `left-1/2 -translate-x-1/2`. */
-@keyframes eos-drift {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(-20px); }
-}
-@keyframes eos-pulse-glow {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-  50% { transform: translate(-50%, -50%) scale(1.08); opacity: 0.85; }
-}
-@keyframes eos-breathe {
-  0%, 100% { transform: scale(1); opacity: 0.9; }
-  50% { transform: scale(1.05); opacity: 1; }
-}
 @keyframes eos-checkpoint {
   0% { left: 0; opacity: 0; }
   12% { opacity: 1; }
@@ -269,9 +231,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .animate-drift-slow,
-  .animate-pulse-glow,
-  .animate-breathe,
   .animate-checkpoint,
   .animate-ping-slow {
     animation: none !important;
