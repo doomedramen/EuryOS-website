@@ -9,6 +9,7 @@ import {
 } from "lucide-react"
 
 import { Container, SectionHeading } from "@/components/site/primitives"
+import { Reveal, Stagger, StaggerItem } from "@/components/site/reveal"
 
 const capabilities = [
   {
@@ -66,15 +67,17 @@ function Platform() {
   return (
     <section id="experience" className="relative border-t border-border/60 py-24 sm:py-28">
       <Container>
-        <SectionHeading
-          eyebrow="The experience"
-          title="Everything you expect from your computer."
-          description="Familiar on the surface, reinvented underneath. All the things you do every day — just safer, calmer, and more dependable."
-        />
+        <Reveal>
+          <SectionHeading
+            eyebrow="The experience"
+            title="Everything you expect from your computer."
+            description="Familiar on the surface, reinvented underneath. All the things you do every day — just safer, calmer, and more dependable."
+          />
+        </Reveal>
 
-        <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-border/70 bg-border/60 sm:grid-cols-2 lg:grid-cols-4">
+        <Stagger className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-border/70 bg-border/60 sm:grid-cols-2 lg:grid-cols-4">
           {capabilities.map((c) => (
-            <div
+            <StaggerItem
               key={c.title}
               className="group flex flex-col gap-3 bg-card/60 p-6 transition-colors hover:bg-card"
             >
@@ -85,9 +88,9 @@ function Platform() {
               <p className="text-sm leading-relaxed text-muted-foreground">
                 {c.body}
               </p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </Container>
     </section>
   )

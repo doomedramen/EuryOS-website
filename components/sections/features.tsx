@@ -8,6 +8,9 @@ import {
 
 import { cn } from "@/lib/utils"
 import { Container, SectionHeading } from "@/components/site/primitives"
+import { Reveal, Stagger, StaggerItem } from "@/components/site/reveal"
+import { SelfHealing } from "@/components/sections/self-healing"
+import { MagicCard } from "@/components/ui/magic-card"
 
 function FeatureCard({
   className,
@@ -17,24 +20,15 @@ function FeatureCard({
   children: React.ReactNode
 }) {
   return (
-    <div
+    // The cursor-follow spotlight replaces the old static top-left glow.
+    <MagicCard
       className={cn(
-        "group relative flex flex-col overflow-hidden rounded-2xl border border-border/70 bg-card/50 p-6 transition-colors hover:border-border sm:p-7",
+        "h-full rounded-2xl border border-border/70 bg-card/50 p-6 transition-colors hover:border-border sm:p-7",
         className
       )}
     >
-      {/* Contained hover glow — a radial gradient (no blur filter), so it
-          always stays within the card's rounded bounds. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-        style={{
-          background:
-            "radial-gradient(18rem 18rem at 0% 0%, color-mix(in oklch, var(--brand) 14%, transparent), transparent 70%)",
-        }}
-      />
-      <div className="relative flex flex-1 flex-col">{children}</div>
-    </div>
+      {children}
+    </MagicCard>
   )
 }
 
@@ -69,15 +63,18 @@ function Features() {
   return (
     <section id="why" className="relative py-24 sm:py-28">
       <Container>
-        <SectionHeading
-          eyebrow="Why EuryOS"
-          title="A safer place for everything you do."
-          description="Most operating systems were built in an era that assumed everything could be trusted. EuryOS starts from the opposite idea — nothing gets more than you explicitly allow — so you get security and reliability you can actually feel."
-        />
+        <Reveal>
+          <SectionHeading
+            eyebrow="Why EuryOS"
+            title="A safer place for everything you do."
+            description="Most operating systems were built in an era that assumed everything could be trusted. EuryOS starts from the opposite idea — nothing gets more than you explicitly allow — so you get security and reliability you can actually feel."
+          />
+        </Reveal>
 
-        <div className="mt-14 grid grid-cols-6 gap-4">
+        <Stagger className="mt-14 grid grid-cols-6 gap-4">
           {/* Flagship — you're in control */}
-          <FeatureCard className="col-span-6 lg:col-span-3">
+          <StaggerItem className="col-span-6 lg:col-span-3">
+          <FeatureCard>
             <FeatureIcon icon={Lock} />
             <h3 className="mt-5 text-xl font-semibold tracking-tight">
               Apps only get what you allow
@@ -109,9 +106,11 @@ function Features() {
               </div>
             </MiniPanel>
           </FeatureCard>
+          </StaggerItem>
 
           {/* Flagship — problems stay small */}
-          <FeatureCard className="col-span-6 lg:col-span-3">
+          <StaggerItem className="col-span-6 lg:col-span-3">
+          <FeatureCard>
             <FeatureIcon icon={ShieldCheck} />
             <h3 className="mt-5 text-xl font-semibold tracking-tight">
               A problem stays a small problem
@@ -122,25 +121,14 @@ function Features() {
               system never notices. No spinning wheels, no lost work, no reboots.
             </p>
             <MiniPanel className="mt-auto font-mono">
-              <div className="flex flex-wrap items-center gap-2 text-muted-foreground">
-                <span className="rounded-md border border-destructive/40 bg-destructive/10 px-2 py-1 text-destructive">
-                  driver crashed
-                </span>
-                <span>→</span>
-                <span className="rounded-md border border-success/30 bg-success/10 px-2 py-1 text-success">
-                  restarted
-                </span>
-              </div>
-              <div className="mt-3 text-muted-foreground">
-                your work{" "}
-                <span className="text-success">untouched</span> · system{" "}
-                <span className="text-success">still running</span>
-              </div>
+              <SelfHealing />
             </MiniPanel>
           </FeatureCard>
+          </StaggerItem>
 
           {/* Verifiable */}
-          <FeatureCard className="col-span-6 sm:col-span-3 lg:col-span-2">
+          <StaggerItem className="col-span-6 sm:col-span-3 lg:col-span-2">
+          <FeatureCard>
             <FeatureIcon icon={CheckCheck} />
             <h3 className="mt-5 text-lg font-semibold tracking-tight">
               Proven, not just promised
@@ -151,9 +139,11 @@ function Features() {
               experts can verify, not just a promise you have to take on trust.
             </p>
           </FeatureCard>
+          </StaggerItem>
 
           {/* One OS everywhere */}
-          <FeatureCard className="col-span-6 sm:col-span-3 lg:col-span-2">
+          <StaggerItem className="col-span-6 sm:col-span-3 lg:col-span-2">
+          <FeatureCard>
             <FeatureIcon icon={Layers} />
             <h3 className="mt-5 text-lg font-semibold tracking-tight">
               The same OS, everywhere
@@ -164,9 +154,11 @@ function Features() {
               protection.
             </p>
           </FeatureCard>
+          </StaggerItem>
 
           {/* Familiar */}
-          <FeatureCard className="col-span-6 lg:col-span-2">
+          <StaggerItem className="col-span-6 lg:col-span-2">
+          <FeatureCard>
             <FeatureIcon icon={Sparkles} />
             <h3 className="mt-5 text-lg font-semibold tracking-tight">
               Familiar from the first second
@@ -177,7 +169,8 @@ function Features() {
               new to learn.
             </p>
           </FeatureCard>
-        </div>
+          </StaggerItem>
+        </Stagger>
       </Container>
     </section>
   )

@@ -1,4 +1,5 @@
 import { Container } from "@/components/site/primitives"
+import { Reveal } from "@/components/site/reveal"
 
 function Philosophy() {
   return (
@@ -6,8 +7,9 @@ function Philosophy() {
       {/* subtle brand glow to give this statement more presence */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-72 w-[44rem] max-w-full -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand/10 blur-[120px]"
+        className="animate-pulse-glow pointer-events-none absolute left-1/2 top-1/2 -z-10 h-72 w-[44rem] max-w-full -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand/10 blur-[120px]"
       />
+      <Reveal>
       <Container className="flex max-w-3xl flex-col items-center text-center">
         <span className="font-mono text-xs font-medium uppercase tracking-widest text-brand">
           A fresh start
@@ -25,6 +27,7 @@ function Philosophy() {
           <span className="text-foreground">Secure underneath.</span>
         </p>
       </Container>
+      </Reveal>
     </section>
   )
 }

@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { Menu } from "lucide-react"
+import { motion, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
 import { navLinks, siteConfig } from "@/lib/site"
@@ -31,9 +32,15 @@ function useScrolled(threshold = 8) {
 function Navbar() {
   const scrolled = useScrolled()
   const [open, setOpen] = React.useState(false)
+  const reduce = useReducedMotion()
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
+    <motion.header
+      className="fixed inset-x-0 top-0 z-50"
+      initial={reduce ? false : { opacity: 0, y: -12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+    >
       <div
         className={cn(
           "transition-all duration-300",
@@ -112,7 +119,7 @@ function Navbar() {
           </div>
         </div>
       </div>
-    </header>
+    </motion.header>
   )
 }
 

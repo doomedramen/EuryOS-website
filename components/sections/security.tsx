@@ -1,6 +1,10 @@
+"use client"
+
 import { EyeOff, KeyRound, Lock, ShieldCheck } from "lucide-react"
+import { motion, useReducedMotion, type Variants } from "motion/react"
 
 import { Container, SectionHeading } from "@/components/site/primitives"
+import { Reveal, Stagger, StaggerItem } from "@/components/site/reveal"
 import { WindowFrame } from "@/components/site/window-frame"
 
 const pillars = [
@@ -26,7 +30,50 @@ const pillars = [
   },
 ]
 
+const reachListVariants: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.09, delayChildren: 0.15 } },
+}
+const reachRowVariants: Variants = {
+  hidden: { opacity: 0, x: -6 },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
+  },
+}
+const reachMarkVariants: Variants = {
+  hidden: { scale: 0.4, opacity: 0 },
+  show: {
+    scale: 1,
+    opacity: 1,
+    transition: { type: "spring", stiffness: 480, damping: 20 },
+  },
+}
+
+function ReachMark({ allowed }: { allowed: boolean }) {
+  const reduce = useReducedMotion()
+  return (
+    <motion.span
+      variants={reduce ? undefined : reachMarkVariants}
+      className={
+        "inline-flex size-5 items-center justify-center rounded-full " +
+        (allowed
+          ? "bg-success/15 text-success"
+          : "bg-muted text-muted-foreground")
+      }
+    >
+      {allowed ? (
+        <svg viewBox="0 0 24 24" className="size-3" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+      ) : (
+        <svg viewBox="0 0 24 24" className="size-3" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      )}
+    </motion.span>
+  )
+}
+
 function PermissionCard() {
+  const reduce = useReducedMotion()
   const reach = [
     { label: "The file you choose", allowed: true },
     { label: "Your other documents", allowed: false },
@@ -69,24 +116,26 @@ function PermissionCard() {
         <div className="mb-2.5 text-xs font-medium uppercase tracking-wide text-muted-foreground">
           What it can reach
         </div>
-        <ul className="space-y-2">
+        <motion.ul
+          className="space-y-2"
+          variants={reduce ? undefined : reachListVariants}
+          initial={reduce ? false : "hidden"}
+          whileInView={reduce ? undefined : "show"}
+          viewport={{ once: true, margin: "-60px" }}
+        >
           {reach.map((r) => (
-            <li key={r.label} className="flex items-center gap-2.5 text-sm">
-              {r.allowed ? (
-                <span className="inline-flex size-5 items-center justify-center rounded-full bg-success/15 text-success">
-                  <svg viewBox="0 0 24 24" className="size-3" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                </span>
-              ) : (
-                <span className="inline-flex size-5 items-center justify-center rounded-full bg-muted text-muted-foreground">
-                  <svg viewBox="0 0 24 24" className="size-3" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
-                </span>
-              )}
+            <motion.li
+              key={r.label}
+              variants={reduce ? undefined : reachRowVariants}
+              className="flex items-center gap-2.5 text-sm"
+            >
+              <ReachMark allowed={r.allowed} />
               <span className={r.allowed ? "text-foreground" : "text-muted-foreground"}>
                 {r.label}
               </span>
-            </li>
+            </motion.li>
           ))}
-        </ul>
+        </motion.ul>
       </div>
     </WindowFrame>
   )
@@ -104,19 +153,21 @@ function Sparkle() {
 
 function Security() {
   return (
-    <section id="security" className="relative border-t border-border/60 py-24 sm:py-28">
+    <section id="security" className="relative overflow-hidden border-t border-border/60 py-24 sm:py-28">
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
-            <SectionHeading
-              eyebrow="Security"
-              title="Built in, not bolted on."
-              description="Most systems try to catch threats after they're already inside. EuryOS is built so that nothing — no app, no download, no device — can do anything you didn't allow in the first place."
-            />
+            <Reveal>
+              <SectionHeading
+                eyebrow="Security"
+                title="Built in, not bolted on."
+                description="Most systems try to catch threats after they're already inside. EuryOS is built so that nothing — no app, no download, no device — can do anything you didn't allow in the first place."
+              />
+            </Reveal>
 
-            <div className="mt-10 grid gap-6 sm:grid-cols-2">
+            <Stagger className="mt-10 grid gap-6 sm:grid-cols-2">
               {pillars.map((p) => (
-                <div key={p.title} className="flex flex-col gap-2">
+                <StaggerItem key={p.title} className="flex flex-col gap-2">
                   <div className="flex items-center gap-2.5">
                     <p.icon className="size-4.5 text-brand" />
                     <h3 className="text-sm font-semibold">{p.title}</h3>
@@ -124,15 +175,15 @@ function Security() {
                   <p className="text-sm leading-relaxed text-muted-foreground">
                     {p.body}
                   </p>
-                </div>
+                </StaggerItem>
               ))}
-            </div>
+            </Stagger>
           </div>
 
-          <div className="relative">
-            <div className="pointer-events-none absolute -inset-6 -z-10 rounded-3xl bg-brand/10 blur-3xl" />
+          <Reveal className="relative">
+            <div className="animate-breathe pointer-events-none absolute -inset-6 -z-10 rounded-3xl bg-brand/10 blur-3xl" />
             <PermissionCard />
-          </div>
+          </Reveal>
         </div>
       </Container>
     </section>

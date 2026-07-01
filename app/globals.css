@@ -216,8 +216,64 @@
     -webkit-mask-image: linear-gradient(to top, #000 55%, transparent);
     mask-image: linear-gradient(to top, #000 55%, transparent);
   }
+
+  /* Ambient motion for decorative glows — transform/opacity only, so it stays
+     on the compositor. Keyframes preserve any translate used for centering. */
+  .animate-drift-slow {
+    animation: eos-drift 18s ease-in-out infinite;
+    will-change: transform;
+  }
+  .animate-pulse-glow {
+    animation: eos-pulse-glow 12s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+  .animate-breathe {
+    animation: eos-breathe 12s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+  /* A light that sweeps along the architecture "checkpoint" line. */
+  .animate-checkpoint {
+    animation: eos-checkpoint 4.5s ease-in-out infinite;
+    will-change: left, opacity;
+  }
+  /* An expanding "always running" pulse ring. */
+  .animate-ping-slow {
+    animation: eos-ping 2.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+    will-change: transform, opacity;
+  }
+}
+
+/* translateX(-50%) is kept so this composes with `left-1/2 -translate-x-1/2`. */
+@keyframes eos-drift {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-20px); }
+}
+@keyframes eos-pulse-glow {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  50% { transform: translate(-50%, -50%) scale(1.08); opacity: 0.85; }
+}
+@keyframes eos-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+@keyframes eos-checkpoint {
+  0% { left: 0; opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+@keyframes eos-ping {
+  0% { transform: scale(1); opacity: 0.5; }
+  75%, 100% { transform: scale(2.2); opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .animate-drift-slow,
+  .animate-pulse-glow,
+  .animate-breathe,
+  .animate-checkpoint,
+  .animate-ping-slow {
+    animation: none !important;
+  }
 }

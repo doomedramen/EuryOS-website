@@ -2,6 +2,7 @@ import { Boxes, RotateCw, ShieldCheck } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Container, SectionHeading } from "@/components/site/primitives"
+import { Reveal, Stagger, StaggerItem } from "@/components/site/reveal"
 
 function Chip({ children }: { children: React.ReactNode }) {
   return (
@@ -35,7 +36,18 @@ function Band({
       )}
     >
       <div className="flex flex-col">
-        <span className={cn("text-sm font-semibold", highlight && "text-brand")}>
+        <span
+          className={cn(
+            "flex items-center gap-2 text-sm font-semibold",
+            highlight && "text-brand"
+          )}
+        >
+          {highlight ? (
+            <span className="relative flex size-2" aria-hidden="true">
+              <span className="animate-ping-slow absolute inline-flex size-full rounded-full bg-brand/70" />
+              <span className="relative inline-flex size-2 rounded-full bg-brand" />
+            </span>
+          ) : null}
           {label}
         </span>
         {sublabel ? (
@@ -54,42 +66,60 @@ function Band({
 function StackDiagram() {
   return (
     <div className="rounded-2xl border border-border/70 bg-card/40 p-3 sm:p-4">
-      <div className="space-y-2">
-        <Band
-          label="Your apps"
-          sublabel="Each in its own protected space"
-          chips={["Browser", "Mail", "Photos"]}
-        />
-        <Band
-          label="System features"
-          sublabel="Files, network, display, accounts"
-          chips={["Files", "Network", "Display"]}
-        />
-        <Band
-          label="Device drivers"
-          sublabel="Restartable, kept at arm's length"
-          chips={["Graphics", "Wi-Fi", "Storage"]}
-        />
+      <Stagger className="space-y-2">
+        <StaggerItem>
+          <Band
+            label="Your apps"
+            sublabel="Each in its own protected space"
+            chips={["Browser", "Mail", "Photos"]}
+          />
+        </StaggerItem>
+        <StaggerItem>
+          <Band
+            label="System features"
+            sublabel="Files, network, display, accounts"
+            chips={["Files", "Network", "Display"]}
+          />
+        </StaggerItem>
+        <StaggerItem>
+          <Band
+            label="Device drivers"
+            sublabel="Restartable, kept at arm's length"
+            chips={["Graphics", "Wi-Fi", "Storage"]}
+          />
+        </StaggerItem>
 
-        <div className="relative flex items-center justify-center py-2">
-          <div className="absolute inset-x-2 border-t border-dashed border-brand/40" />
-          <span className="relative rounded-full border border-brand/30 bg-background px-3 py-1 text-[11px] font-medium text-brand">
-            every request checked · nothing trusted by default
-          </span>
-        </div>
+        <StaggerItem>
+          <div className="relative flex items-center justify-center py-2">
+            <div className="absolute inset-x-2 border-t border-dashed border-brand/40" />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-2 top-1/2 h-0"
+            >
+              <span className="animate-checkpoint absolute top-0 size-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand shadow-[0_0_10px_2px_var(--brand)]" />
+            </div>
+            <span className="relative rounded-full border border-brand/30 bg-background px-3 py-1 text-[11px] font-medium text-brand">
+              every request checked · nothing trusted by default
+            </span>
+          </div>
+        </StaggerItem>
 
-        <Band
-          highlight
-          label="EuryOS core"
-          sublabel="Small, trusted, and verified"
-          chips={["always running"]}
-        />
-        <Band
-          label="Your device"
-          sublabel="Phone · laptop · workstation · server"
-          chips={["any hardware"]}
-        />
-      </div>
+        <StaggerItem>
+          <Band
+            highlight
+            label="EuryOS core"
+            sublabel="Small, trusted, and verified"
+            chips={["always running"]}
+          />
+        </StaggerItem>
+        <StaggerItem>
+          <Band
+            label="Your device"
+            sublabel="Phone · laptop · workstation · server"
+            chips={["any hardware"]}
+          />
+        </StaggerItem>
+      </Stagger>
     </div>
   )
 }
@@ -119,19 +149,21 @@ function Architecture() {
       className="relative border-t border-border/60 py-24 sm:py-28"
     >
       <Container>
-        <SectionHeading
-          eyebrow="Reliability"
-          title="Built so problems can't spread."
-          description="EuryOS keeps every part of the system in its own protected space. So when one piece stumbles, it's caught and restarted — without dragging everything else down with it."
-        />
+        <Reveal>
+          <SectionHeading
+            eyebrow="Reliability"
+            title="Built so problems can't spread."
+            description="EuryOS keeps every part of the system in its own protected space. So when one piece stumbles, it's caught and restarted — without dragging everything else down with it."
+          />
+        </Reveal>
 
         <div className="mt-14 grid gap-10 lg:grid-cols-5 lg:gap-12">
-          <div className="lg:col-span-3">
+          <Reveal className="lg:col-span-3">
             <StackDiagram />
-          </div>
-          <div className="flex flex-col justify-center gap-8 lg:col-span-2">
+          </Reveal>
+          <Stagger className="flex flex-col justify-center gap-8 lg:col-span-2">
             {supports.map((s) => (
-              <div key={s.title} className="flex gap-4">
+              <StaggerItem key={s.title} className="flex gap-4">
                 <div className="mt-0.5 inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-border/80 bg-background text-brand">
                   <s.icon className="size-4.5" />
                 </div>
@@ -141,9 +173,9 @@ function Architecture() {
                     {s.body}
                   </p>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
       </Container>
     </section>

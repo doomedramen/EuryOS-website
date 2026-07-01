@@ -1,4 +1,5 @@
 import { Container } from "@/components/site/primitives"
+import { Stagger, StaggerItem } from "@/components/site/reveal"
 
 const stats = [
   { value: "Zero", label: "Apps with hidden access" },
@@ -11,9 +12,9 @@ function Stats() {
   return (
     <section className="relative">
       <Container>
-        <div className="grid grid-cols-2 gap-y-8 rounded-2xl border border-border/70 bg-card/40 py-8 sm:grid-cols-4">
+        <Stagger className="grid grid-cols-2 gap-y-8 rounded-2xl border border-border/70 bg-card/40 py-8 sm:grid-cols-4">
           {stats.map((stat, i) => (
-            <div
+            <StaggerItem
               key={stat.label}
               className={
                 "flex flex-col items-center px-4 text-center" +
@@ -27,9 +28,9 @@ function Stats() {
               <div className="mt-1.5 text-xs text-muted-foreground sm:text-sm">
                 {stat.label}
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </Container>
     </section>
   )

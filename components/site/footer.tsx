@@ -1,5 +1,6 @@
 import { siteConfig } from "@/lib/site"
 import { Container } from "@/components/site/primitives"
+import { Reveal } from "@/components/site/reveal"
 import { EuryWordmark } from "@/components/site/logo"
 
 const columns = [
@@ -26,6 +27,7 @@ function Footer() {
   return (
     <footer className="relative border-t border-border/60">
       <Container className="py-14">
+        <Reveal>
         <div className="grid gap-10 md:grid-cols-[1.6fr_1fr_1fr]">
           <div className="flex max-w-xs flex-col gap-4">
             <EuryWordmark />
@@ -64,6 +66,7 @@ function Footer() {
             Secure by design. Familiar by default.
           </p>
         </div>
+        </Reveal>
       </Container>
     </footer>
   )

@@ -2,6 +2,7 @@ import { ChevronRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Container, SectionHeading } from "@/components/site/primitives"
+import { Reveal, Stagger, StaggerItem } from "@/components/site/reveal"
 
 const priorities = [
   {
@@ -43,18 +44,20 @@ function Principles() {
       className="relative border-t border-border/60 py-24 sm:py-28"
     >
       <Container>
-        <SectionHeading
-          align="center"
-          eyebrow="Our priorities"
-          title="What we won't compromise."
-          description="These are the priorities behind every decision we make, listed in the order that matters most — and your security always comes first, never traded away for speed or convenience."
-          className="mx-auto items-center"
-        />
+        <Reveal>
+          <SectionHeading
+            align="center"
+            eyebrow="Our priorities"
+            title="What we won't compromise."
+            description="These are the priorities behind every decision we make, listed in the order that matters most — and your security always comes first, never traded away for speed or convenience."
+            className="mx-auto items-center"
+          />
+        </Reveal>
 
         {/* The priority chain */}
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-x-2 gap-y-3">
+        <Stagger className="mt-12 flex flex-wrap items-center justify-center gap-x-2 gap-y-3">
           {priorities.map((p, i) => (
-            <div key={p.name} className="flex items-center gap-2">
+            <StaggerItem key={p.name} className="flex items-center gap-2">
               <span
                 className={cn(
                   "text-xl font-semibold tracking-tight sm:text-2xl",
@@ -66,14 +69,14 @@ function Principles() {
               {i < priorities.length - 1 ? (
                 <ChevronRight className="size-4 text-brand/50" />
               ) : null}
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
 
         {/* Per-priority glosses */}
-        <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-border/70 bg-border/60 sm:grid-cols-2 lg:grid-cols-3">
+        <Stagger className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-border/70 bg-border/60 sm:grid-cols-2 lg:grid-cols-3">
           {priorities.map((p) => (
-            <div key={p.rank} className="bg-card/60 p-6">
+            <StaggerItem key={p.rank} className="bg-card/60 p-6">
               <div className="flex items-baseline gap-3">
                 <span className="font-mono text-xs text-brand">{p.rank}</span>
                 <h3 className="text-base font-semibold">{p.name}</h3>
@@ -81,9 +84,9 @@ function Principles() {
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 {p.gloss}
               </p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </Container>
     </section>
   )

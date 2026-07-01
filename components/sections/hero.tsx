@@ -1,8 +1,12 @@
+"use client"
+
 import { ArrowRight, KeyRound, Lock, RotateCw, ShieldCheck } from "lucide-react"
+import { motion, useReducedMotion, type Variants } from "motion/react"
 
 import { siteConfig } from "@/lib/site"
 import { Button } from "@/components/ui/button"
 import { Container } from "@/components/site/primitives"
+import { Reveal, Stagger, StaggerItem } from "@/components/site/reveal"
 import { WindowFrame } from "@/components/site/window-frame"
 
 function HeroBackground() {
@@ -12,8 +16,8 @@ function HeroBackground() {
       className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
     >
       <div className="absolute inset-0 bg-grid mask-fade-b opacity-60" />
-      <div className="absolute -top-40 left-1/2 h-[36rem] w-[64rem] -translate-x-1/2 rounded-full bg-brand/20 blur-[140px] dark:bg-brand/25" />
-      <div className="absolute -top-20 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-brand/30 blur-[120px]" />
+      <div className="animate-drift-slow absolute -top-40 left-1/2 h-[36rem] w-[64rem] -translate-x-1/2 rounded-full bg-brand/20 blur-[140px] dark:bg-brand/25" />
+      <div className="animate-drift-slow absolute -top-20 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-brand/30 blur-[120px] [animation-duration:24s]" />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background" />
     </div>
   )
@@ -73,37 +77,55 @@ const events: Event[] = [
   },
 ]
 
+const badgePop: Variants = {
+  hidden: {},
+  show: {
+    scale: [1, 1.12, 1],
+    transition: {
+      delay: 0.35,
+      duration: 0.6,
+      times: [0, 0.5, 1],
+      ease: "easeInOut",
+    },
+  },
+}
+
 function ProtectionPanel() {
+  const reduce = useReducedMotion()
   return (
     <WindowFrame title="EuryOS — Activity" bodyClassName="bg-card/60 p-3 sm:p-4">
-      <div className="flex flex-col gap-2">
-        {events.map((e) => (
-          <div
-            key={e.title}
-            className="flex items-center gap-3 rounded-xl border border-border/60 bg-background/50 p-3"
-          >
-            <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-border/70 bg-background text-brand">
-              <e.icon className="size-4.5" />
-            </span>
-            <div className="min-w-0 flex-1">
-              <div className="truncate text-sm font-medium">{e.title}</div>
-              <div className="truncate text-xs text-muted-foreground">
-                {e.detail}
-              </div>
-            </div>
-            <span
-              className={
-                "shrink-0 rounded-full border px-2.5 py-0.5 text-xs font-medium " +
-                (e.tone === "good"
-                  ? "border-success/30 bg-success/10 text-success"
-                  : "border-brand/30 bg-brand/10 text-brand")
-              }
+      <Stagger className="flex flex-col gap-2">
+        {events.map((e, i) => {
+          const badgeClass =
+            "shrink-0 rounded-full border px-2.5 py-0.5 text-xs font-medium " +
+            (e.tone === "good"
+              ? "border-success/30 bg-success/10 text-success"
+              : "border-brand/30 bg-brand/10 text-brand")
+          return (
+            <StaggerItem
+              key={e.title}
+              className="flex items-center gap-3 rounded-xl border border-border/60 bg-background/50 p-3"
             >
-              {e.status}
-            </span>
-          </div>
-        ))}
-      </div>
+              <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-border/70 bg-background text-brand">
+                <e.icon className="size-4.5" />
+              </span>
+              <div className="min-w-0 flex-1">
+                <div className="truncate text-sm font-medium">{e.title}</div>
+                <div className="truncate text-xs text-muted-foreground">
+                  {e.detail}
+                </div>
+              </div>
+              {i === 0 && !reduce ? (
+                <motion.span variants={badgePop} className={badgeClass}>
+                  {e.status}
+                </motion.span>
+              ) : (
+                <span className={badgeClass}>{e.status}</span>
+              )}
+            </StaggerItem>
+          )
+        })}
+      </Stagger>
     </WindowFrame>
   )
 }
@@ -112,49 +134,64 @@ function Hero() {
   return (
     <section id="top" className="relative overflow-hidden pb-20 pt-32 sm:pt-40">
       <HeroBackground />
-      <Container className="relative flex flex-col items-center text-center">
-        <Pill />
+      <Container className="relative">
+        <Stagger
+          trigger="mount"
+          className="flex flex-col items-center text-center"
+        >
+          <StaggerItem>
+            <Pill />
+          </StaggerItem>
 
-        <h1 className="mt-7 max-w-4xl text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
-          <span className="text-gradient">Secure by design.</span>
-          <br className="hidden sm:block" />{" "}
-          <span className="text-brand-gradient">Familiar by default.</span>
-        </h1>
+          <StaggerItem>
+            <h1 className="mt-7 max-w-4xl text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
+              <span className="text-gradient">Secure by design.</span>
+              <br className="hidden sm:block" />{" "}
+              <span className="text-brand-gradient">Familiar by default.</span>
+            </h1>
+          </StaggerItem>
 
-        <p className="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
-          EuryOS is a new kind of operating system that protects everything you
-          do — keeping apps in their lane, threats locked out, and your work
-          running smoothly. No malware free-for-all. No mystery crashes. No
-          compromises.
-        </p>
+          <StaggerItem>
+            <p className="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+              EuryOS is a new kind of operating system that protects everything
+              you do — keeping apps in their lane, threats locked out, and your
+              work running smoothly. No malware free-for-all. No mystery crashes.
+              No compromises.
+            </p>
+          </StaggerItem>
 
-        <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row">
-          <Button asChild size="lg" className="h-11 px-5 text-[0.95rem]">
-            <a href={siteConfig.contact}>
-              Get in touch
-              <ArrowRight className="size-4" />
-            </a>
-          </Button>
-          <Button
-            asChild
-            size="lg"
-            variant="outline"
-            className="h-11 px-5 text-[0.95rem]"
-          >
-            <a href="#why">See how it works</a>
-          </Button>
-        </div>
+          <StaggerItem className="mt-9 flex flex-col items-center gap-3 sm:flex-row">
+            <Button asChild size="lg" className="h-11 px-5 text-[0.95rem]">
+              <a href={siteConfig.contact}>
+                Get in touch
+                <ArrowRight className="size-4" />
+              </a>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="h-11 px-5 text-[0.95rem]"
+            >
+              <a href="#why">See how it works</a>
+            </Button>
+          </StaggerItem>
 
-        <p className="mt-6 text-xs text-muted-foreground">
-          Launching 2026 · One operating system, from the smallest device to your
-          workstation
-        </p>
+          <StaggerItem>
+            <p className="mt-6 text-xs text-muted-foreground">
+              Launching 2026 · One operating system, from the smallest device to
+              your workstation
+            </p>
+          </StaggerItem>
+        </Stagger>
       </Container>
 
-      <Container className="relative mt-16 max-w-3xl">
-        <div className="pointer-events-none absolute -inset-6 -z-10 rounded-3xl bg-brand/10 blur-3xl" />
-        <ProtectionPanel />
-      </Container>
+      <Reveal delay={0.3} className="relative">
+        <Container className="relative mt-16 max-w-3xl">
+          <div className="animate-breathe pointer-events-none absolute -inset-6 -z-10 rounded-3xl bg-brand/10 blur-3xl" />
+          <ProtectionPanel />
+        </Container>
+      </Reveal>
     </section>
   )
 }
