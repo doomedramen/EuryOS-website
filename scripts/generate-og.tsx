@@ -2,23 +2,22 @@
  * Source for the social share card at `public/og.png`.
  *
  * We ship `public/og.png` as a static file because GitHub Pages serves files by
- * extension — the Next metadata route would emit an extensionless file that Pages
+ * extension — a Next metadata route would emit an extensionless file that Pages
  * serves as application/octet-stream, which social scrapers reject.
  *
- * To regenerate `public/og.png` after a branding/copy change:
- *   1. copy this file to `app/opengraph-image.tsx`
- *   2. run `pnpm build`
- *   3. `cp out/opengraph-image public/og.png`
- *   4. delete `app/opengraph-image.tsx` again
+ * To regenerate `public/og.png` after a branding/copy change, run:
+ *   pnpm og
+ *
+ * A gated pre-commit hook re-runs this and stages the result automatically
+ * whenever this file or the `assets/` inputs are part of a commit, so the
+ * shipped image can't silently drift from the source copy.
  */
-import { readFileSync } from "node:fs"
+import { readFileSync, writeFileSync } from "node:fs"
 import { join } from "node:path"
 import { ImageResponse } from "next/og"
 
-export const dynamic = "force-static"
 export const alt = "EuryOS — Secure by design. Familiar by default."
 export const size = { width: 1200, height: 630 }
-export const contentType = "image/png"
 
 const assetDir = join(process.cwd(), "assets")
 const outfit600 = readFileSync(join(assetDir, "fonts", "Outfit-600.woff"))
@@ -34,7 +33,7 @@ function Mark() {
   return <img src={markUri} width={104} height={104} alt="" />
 }
 
-export default function OpengraphImage() {
+function OpengraphImage() {
   return new ImageResponse(
     (
       <div
@@ -142,3 +141,16 @@ export default function OpengraphImage() {
     }
   )
 }
+
+async function main() {
+  const image = OpengraphImage()
+  const buffer = Buffer.from(await image.arrayBuffer())
+  const outPath = join(process.cwd(), "public", "og.png")
+  writeFileSync(outPath, buffer)
+  console.log(`Wrote ${outPath} (${buffer.length} bytes)`)
+}
+
+main().catch((error) => {
+  console.error(error)
+  process.exit(1)
+})
